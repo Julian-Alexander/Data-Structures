@@ -23,24 +23,68 @@ class LinkedList {
   The `head` pointer should be updated
   accordingly */
   removeHead() {
-    const head = this.head.value;
+  //   const head = this.head.value;
+  //   this.head = this.head.next;
+  //   return head;
+    if (this.head === null) return;
+    if (this.head.next === null) {
+      const head = this.head;
+      this.head = null;
+      this.tail = null;
+      return head.value;
+    }
+    const value = this.head.value;
     this.head = this.head.next;
-    return head;
+    return value;
   }
 
   /* Searches the list for the given value
   Returns true or false accordingly */
   contains(value) {
-    let node = this.head;
-    while (node){
-      if (node.value === value) {
-        return true;
-      } else {
-        node = node.next;
-      }
+  //   let node = this.head;
+  //   while (node){
+  //     if (node.value === value) {
+  //       return true;
+  //     } else {
+  //       node = node.next;
+  //     }
+  //   }
+  //   return false;
+  // }
+  //recurse sol1
+  // const recurse = (node)  => {
+  //   if (node.value === value) return true;
+  //   if (!node.next) return false;
+  //   return this.recurse(nose.next);
+  // };
+  // return recurse (this.head);
+
+  // Recursive solution
+  if (this.head === null) return false;
+  // const searchLinkedList = (node) => {
+  //   // base cases are:
+  //   // 1. we find the value
+  //   // 2. node.next is null
+  //   if (node.value === value) return true;
+  //   if (node.next === null) return false;
+  //   // call searchLinkedList recursively 
+  //   // with the next node in the list
+  //   return searchLinkedList(node.next);
+  // };
+  // // call our recursive function on the head node 
+  // // to kick it off
+  // return searchLinkedList(this.head);
+
+  // Iterative solution
+  let current = this.head;
+  while (current) {
+    if (current.value === value) {
+      return true;
     }
-    return false;
+    current = current.next;
   }
+  return false;
+}
 
   /* Finds and returns the maximal value
   of all the values in the list */
